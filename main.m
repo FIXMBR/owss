@@ -1,13 +1,15 @@
 clear;close all;
 
-tauopt=[1 2]';
-u=1.0*[-1;1];
-x0=[1;0];
-xf=[0;0];
-W=100*eye(2);
+tauopt1=[1 2]';
+tauopt2=[0.5 2]';
+u1=1.0*[-1;1];
+u2=1.0*[-1;1];
+x0=[1;0;1;0];
+xf=[0;0;0;0];
+W=100*eye(4);
 MDNS=300;
 
-qh=@(tauopt) cost_fun(tauopt,u,x0,xf,W,MDNS);
+qh=@(tauopt) cost_fun(tauopt,u1,u2 ,x0,xf,W,MDNS);
 
 nb=length(tauopt);
 b=0.0*ones(nb,1);
