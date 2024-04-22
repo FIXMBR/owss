@@ -17,9 +17,10 @@ u = zeros(tau_lenght, 2);
             if(tau1(k)<min_tau)
                 if(i>1)
                     if(tau(i-1)<tau1(k))
-                        min_tau = tau1(k);
-                        min_u = u1(k);
-                        is_tau1 = 1;
+
+                    min_tau = tau1(k);
+                    min_u = u1(k);
+                    is_tau1 = 1;
                     end
                 else
                    
