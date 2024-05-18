@@ -1,0 +1,10 @@
+function dx=rhs_s(t,x,u)
+dx=zeros(4,1);
+L = 1;
+R = 1;
+g = 0.01; % Waga kosztu sterowania
+dx(1)= R/2 * cos(x(3)) * u(1) + R/2 * cos(x(3)) * u(2);
+dx(2)= R/2 * sin(x(3)) * u(1) + R/2 * sin(x(3)) * u(2);
+dx(3)= R/L * u(1) - R/L * u(2);
+%dx(4) = 1/2 * (max(0,x(2) - exp(x(1))) + g * u(1)^2 + g * u(2) ^2); % Koszt na podstawie położenia i sterowania
+dx(4) = 1/2 * ( g * u(1)^2 + g * u(2) ^2);

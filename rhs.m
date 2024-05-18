@@ -1,6 +1,9 @@
-function dx=rhs(t,x, u1, u2) %Wahadło matematyczne z silnikiem DC
+function dx=rhs(t,x, u) %Wahadło matematyczne z silnikiem DC
 
 % Równania stanu
+
+u1 = u(1,:);
+u2 = u(2,:);
 
 I1=1;I2=1;m1=10;m2=5;d=0.7;xc2=0.35;yc2=0;s1=0.10;f1=0.01;s2=0.10;f2=0.01;kt=10.0;
 d2=d*d;m2d=m2*d;m2d2=m2*d2;A=I1+I2+m2*d2;
