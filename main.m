@@ -7,10 +7,15 @@ tauopt2=[1.4 3.9 5]';
 
 tauopt = [tauopt1(1:end-1,1);tauopt2];
 
-u1=1.0*[-1;1];
-u2=1.0*[1;-1;1];
-x0=[1.5708;-0.5236;0;0];
-xf=[0;0;0;0];
+% u1=1.0*[-1;1];
+% u2=1.0*[1;-1;1];
+% x0=[1.5708;-0.5236;0;0];
+% xf=[0;0;0;0];
+
+u1=1.0*[1;-1];
+u2=1.0*[-1;1;-1];
+xf=[1.5708;-0.5236;0;0];
+x0=[0;0;0;0];
 W=100*eye(4);
 MDNS=300;
 
@@ -49,7 +54,7 @@ A(length(tauopt1),end)=-1
 
 
 options=optimoptions('fmincon');
-options.SpecifyObjectiveGradient=true;
+options.SpecifyObjectiveGradient=false;
 options.Display='iter';
 options.Algorithm='interior-point';
 
@@ -97,4 +102,27 @@ set(h,'linewidth',2);
 axis([0 t(end) -1.1 1.1]);hold off
 
 % sterowanie czasooptymalne
+%%
+d=0.7;
+% figure
+% hold on
+% plot(x(:,1));
+% 
+% plot(x(:,2));
+
+position = zeros(2,size(x,1));
+
+for i = 1:size(x,1);
+    x1 = x(i,1);
+    x2 = x(i,2);
+    R1 = [cos(x1), -sin(x1);sin(x1),cos(x1)];
+    R2 = [cos(x2), -sin(x2);sin(x2),cos(x2)];
+    position(:,i)=R1*[d;0] + R1*R2*[d;0];
+
+end
+% R2 = 
+% hold off
+scatter(position(1,:),position(2,:));
+
+
 
